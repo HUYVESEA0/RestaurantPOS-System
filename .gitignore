@@ -1,0 +1,32 @@
+# C# .NET Projects
+bin/
+obj/
+*.user
+*.suo
+*.sln.ide
+
+# Visual Studio
+.vs/
+*.csproj.user
+*.vbproj.user
+*.dbmdl
+*.dbproj
+
+# WPF Applications
+*.xaml.user
+*.xaml.g.i.cs
+
+# Android Development
+*.apk
+*.ap_
+build/
+*.iml
+.idea/
+local.properties
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+*.cache
+*.pid
