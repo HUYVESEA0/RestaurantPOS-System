@@ -255,7 +255,23 @@ npm test
 
 ## 🚀 Quick Start Scripts
 
-### Windows PowerShell
+### Windows Batch Scripts
+```batch
+REM Setup toàn bộ dự án
+setup.bat
+
+REM Chạy cả Backend và Frontend
+run-all.bat
+
+REM Hoặc chạy riêng lẻ
+run-backend.bat
+run-frontend.bat
+
+REM Dừng tất cả servers
+stop-all.bat
+```
+
+### Windows PowerShell (Alternative)
 ```powershell
 # Setup toàn bộ dự án
 .\setup.ps1
@@ -303,7 +319,8 @@ Give a ⭐️ if this project helped you!
 
 - [README.md](README.md) - This file
 - [QUICKSTART.md](QUICKSTART.md) - Quick setup guide
-- [ENV_CONFIGURATION_GUIDE.md](ENV_CONFIGURATION_GUIDE.md) - Environment variables setup 🆕
+- [BATCH_SCRIPTS_GUIDE.md](BATCH_SCRIPTS_GUIDE.md) - Batch scripts documentation 🆕
+- [ENV_CONFIGURATION_GUIDE.md](ENV_CONFIGURATION_GUIDE.md) - Environment variables setup
 - [TECHNICAL.md](TECHNICAL.md) - Technical details
 - [AUTH_GUIDE.md](AUTH_GUIDE.md) - Authentication documentation
 - [PASSWORD_RESET_GUIDE.md](PASSWORD_RESET_GUIDE.md) - Password reset guide

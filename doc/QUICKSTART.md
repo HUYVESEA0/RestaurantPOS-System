@@ -1,6 +1,46 @@
 # Quick Start Guide - Restaurant POS System
 
+## 🚀 Cách nhanh nhất (Recommended)
+
+### Sử dụng Batch Scripts
+
+**Windows 10/11:**
+
+1. **Mở Command Prompt hoặc Double-click file**
+2. Chạy setup:
+```batch
+setup.bat
+```
+
+3. Sau khi setup xong, chạy ứng dụng:
+```batch
+run-all.bat
+```
+
+4. Để dừng servers:
+```batch
+stop-all.bat
+```
+
+## 📋 Hướng dẫn chi tiết
+
 ## Bước 1: Cài đặt Backend (API)
+
+### Option 1: Sử dụng Script (Khuyến nghị)
+
+Double-click `setup.bat` hoặc chạy trong Command Prompt:
+```batch
+setup.bat
+```
+
+Script sẽ tự động:
+- ✅ Check .NET SDK và Node.js
+- ✅ Restore packages
+- ✅ Tạo database migrations
+- ✅ Update database
+- ✅ Install frontend dependencies
+
+### Option 2: Manual Setup
 
 1. Mở terminal tại thư mục gốc dự án
 2. Chạy lần lượt các lệnh:
@@ -14,32 +54,47 @@ dotnet ef migrations add InitialCreate --project RestaurantPOS.API
 
 # Tạo database và seed data
 dotnet ef database update --project RestaurantPOS.API
+```
 
-# Chạy API server
+## Bước 2: Chạy ứng dụng
+
+### Option 1: Chạy cả Backend và Frontend (Khuyến nghị)
+
+Double-click `run-all.bat` hoặc:
+```batch
+run-all.bat
+```
+
+Sẽ mở 2 cửa sổ:
+- Backend API: https://localhost:7000
+- Frontend: http://localhost:3000
+
+### Option 2: Chạy riêng lẻ
+
+**Backend:**
+```batch
+run-backend.bat
+```
+
+**Frontend (cửa sổ mới):**
+```batch
+run-frontend.bat
+```
+
+### Option 3: Manual Run
+
+**Backend:**
+```bash
 dotnet run --project RestaurantPOS.API
 ```
 
 ✅ API sẽ chạy tại: `https://localhost:7000`
 ✅ Swagger UI: `https://localhost:7000/swagger`
 
-## Bước 2: Cài đặt Frontend (React)
-
-1. Mở terminal mới
-2. Di chuyển vào thư mục React:
-
+**Frontend (terminal mới):**
 ```bash
 cd restaurant-pos-client
-```
-
-3. Cài đặt dependencies:
-
-```bash
 npm install
-```
-
-4. Chạy React app:
-
-```bash
 npm start
 ```
 
@@ -48,13 +103,26 @@ npm start
 ## Bước 3: Kiểm tra kết nối
 
 1. Mở trình duyệt tại `http://localhost:3000`
-2. Bạn sẽ thấy Dashboard với dữ liệu mẫu
+2. Đăng nhập với:
+   - **Username**: `admin`
+   - **Password**: `Admin@123`
 3. Kiểm tra các chức năng:
    - Dashboard
    - Sản phẩm
    - Danh mục
    - Đơn hàng
    - Bàn
+
+## 🛑 Dừng Servers
+
+### Sử dụng Script
+```batch
+stop-all.bat
+```
+
+### Manual
+- Nhấn `Ctrl+C` trong mỗi terminal/command prompt
+- Hoặc đóng cửa sổ
 
 ## Troubleshooting
 
@@ -102,6 +170,11 @@ npm install
 
 Hệ thống tự động tạo data mẫu:
 
+**Admin User:**
+- Username: `admin`
+- Password: `Admin@123`
+- Email: `admin@restaurantpos.com`
+
 **Categories:**
 - Đồ ăn
 - Đồ uống
@@ -110,7 +183,17 @@ Hệ thống tự động tạo data mẫu:
 **Tables:**
 - B01, B02, B03, B04
 
-Bạn có thể thêm Products và Orders từ giao diện web.
+## 📜 Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `setup.bat` | Setup dự án (restore packages, database, npm install) |
+| `run-all.bat` | Chạy cả Backend và Frontend |
+| `run-backend.bat` | Chỉ chạy Backend API |
+| `run-frontend.bat` | Chỉ chạy Frontend |
+| `stop-all.bat` | Dừng tất cả servers |
+| `setup.ps1` | PowerShell version of setup |
+| `run-all.ps1` | PowerShell version of run-all |
 
 ## Cổng mặc định
 
@@ -118,13 +201,8 @@ Bạn có thể thêm Products và Orders từ giao diện web.
 - Frontend: `http://localhost:3000`
 - Swagger UI: `https://localhost:7000/swagger`
 
-## Tài khoản demo
-
-Hiện tại chưa có authentication. Tất cả API đều public.
-
 ## Tiếp theo
 
-- Thêm sản phẩm mới
-- Tạo đơn hàng
-- Quản lý bàn
-- Xem thống kê dashboard
+- Xem [AUTH_GUIDE.md](AUTH_GUIDE.md) để hiểu về authentication
+- Xem [PASSWORD_RESET_GUIDE.md](PASSWORD_RESET_GUIDE.md) để setup email
+- Xem [ENV_CONFIGURATION_GUIDE.md](ENV_CONFIGURATION_GUIDE.md) để config environment
