@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -8,9 +7,14 @@ import Register from './components/Auth/Register';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import ResetPassword from './components/Auth/ResetPassword';
 import ProductList from './components/Products/ProductList';
+import ProductForm from './components/Products/ProductForm';
 import OrderList from './components/Orders/OrderList';
+import OrderForm from './components/Orders/OrderForm';
+import OrderDetail from './components/Orders/OrderDetail';
 import CategoryList from './components/Categories/CategoryList';
+import CategoryForm from './components/Categories/CategoryForm';
 import TableList from './components/Tables/TableList';
+import TableForm from './components/Tables/TableForm';
 import Dashboard from './components/Dashboard/Dashboard';
 
 function AppContent() {
@@ -22,7 +26,7 @@ function AppContent() {
         <>
           <nav className="navbar">
        <div className="nav-container">
-              <h1 className="nav-logo">Restaurant POS</h1>
+              <h1 className="nav-logo">Nhà Hàng BÚN ĐẬU MẸT</h1>
 <ul className="nav-menu">
 <li className="nav-item">
             <Link to="/" className="nav-link">Dashboard</Link>
@@ -54,11 +58,28 @@ function AppContent() {
           <main className="main-content">
     <Routes>
    <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
- <Route path="/products" element={<PrivateRoute><ProductList /></PrivateRoute>} />
-       <Route path="/categories" element={<PrivateRoute><CategoryList /></PrivateRoute>} />
-<Route path="/orders" element={<PrivateRoute><OrderList /></PrivateRoute>} />
+ 
+      {/* Products */}
+      <Route path="/products" element={<PrivateRoute><ProductList /></PrivateRoute>} />
+ <Route path="/products/new" element={<PrivateRoute><ProductForm /></PrivateRoute>} />
+<Route path="/products/edit/:id" element={<PrivateRoute><ProductForm /></PrivateRoute>} />
+      
+      {/* Categories */}
+    <Route path="/categories" element={<PrivateRoute><CategoryList /></PrivateRoute>} />
+      <Route path="/categories/new" element={<PrivateRoute><CategoryForm /></PrivateRoute>} /> {/* ✅ ADD */}
+  <Route path="/categories/edit/:id" element={<PrivateRoute><CategoryForm /></PrivateRoute>} /> {/* ✅ ADD */}
+   
+      {/* Orders */}
+      <Route path="/orders" element={<PrivateRoute><OrderList /></PrivateRoute>} />
+      <Route path="/orders/new" element={<PrivateRoute><OrderForm /></PrivateRoute>} /> {/* ✅ ADD */}
+      <Route path="/orders/:id" element={<PrivateRoute><OrderDetail /></PrivateRoute>} /> {/* ✅ ADD */}
+      
+      {/* Tables */}
       <Route path="/tables" element={<PrivateRoute><TableList /></PrivateRoute>} />
-   <Route path="*" element={<Navigate to="/" replace />} />
+   <Route path="/tables/new" element={<PrivateRoute><TableForm /></PrivateRoute>} />
+      <Route path="/tables/edit/:id" element={<PrivateRoute><TableForm /></PrivateRoute>} />
+   
+      <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           </main>
         </>

@@ -4,11 +4,21 @@ using Microsoft.IdentityModel.Tokens;
 using RestaurantPOS.API.Data;
 using RestaurantPOS.API.Services;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        // Handle circular references
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        // Optional: Write indented JSON for readability
+        options.JsonSerializerOptions.WriteIndented = true;
+        // ✅ NEW: Force UTC timezone in DateTime serialization
+        options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+    });
 
 // Configure Entity Framework with SQL Server
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

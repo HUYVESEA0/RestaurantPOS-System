@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { productService } from '../../services/productService';
 import { orderService } from '../../services/orderService';
 import { categoryService } from '../../services/categoryService';
@@ -15,11 +16,12 @@ interface DashboardStats {
 }
 
 const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
   const [stats, setStats] = useState<DashboardStats>({
     totalProducts: 0,
     totalOrders: 0,
     totalCategories: 0,
- availableTables: 0,
+    availableTables: 0,
     todayRevenue: 0,
     pendingOrders: 0,
   });
@@ -31,20 +33,20 @@ const Dashboard: React.FC = () => {
   }, []);
 
   const fetchDashboardData = async () => {
-try {
+    try {
       setLoading(true);
       const [products, orders, categories, tables] = await Promise.all([
         productService.getAll(),
         orderService.getAll(),
-    categoryService.getAll(),
+        categoryService.getAll(),
         tableService.getAll(),
       ]);
 
       // Calculate today's revenue
-const today = new Date();
+      const today = new Date();
       today.setHours(0, 0, 0, 0);
-      
-   const todayOrders = orders.filter(order => {
+
+      const todayOrders = orders.filter(order => {
         const orderDate = new Date(order.orderDate);
         return orderDate >= today && order.status === 'Completed';
       });
@@ -55,9 +57,9 @@ const today = new Date();
       setStats({
         totalProducts: products.length,
         totalOrders: orders.length,
-      totalCategories: categories.length,
+        totalCategories: categories.length,
         availableTables: tables.filter(t => t.isAvailable).length,
-     todayRevenue,
+        todayRevenue,
         pendingOrders,
       });
       setError(null);
@@ -65,7 +67,7 @@ const today = new Date();
       setError('Không thể tải dữ liệu dashboard.');
       console.error('Error fetching dashboard data:', err);
     } finally {
-    setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -86,92 +88,92 @@ const today = new Date();
             <h3>Sản phẩm</h3>
             <p className="stat-number">{stats.totalProducts}</p>
             <p className="stat-label">Tổng sản phẩm</p>
-   </div>
+          </div>
         </div>
 
-      <div className="stat-card orders">
+        <div className="stat-card orders">
           <div className="stat-icon">🛒</div>
           <div className="stat-content">
- <h3>Đơn hàng</h3>
+            <h3>Đơn hàng</h3>
             <p className="stat-number">{stats.totalOrders}</p>
             <p className="stat-label">Tổng đơn hàng</p>
           </div>
-     </div>
+        </div>
 
- <div className="stat-card categories">
-      <div className="stat-icon">📁</div>
+        <div className="stat-card categories">
+          <div className="stat-icon">📁</div>
           <div className="stat-content">
             <h3>Danh mục</h3>
-          <p className="stat-number">{stats.totalCategories}</p>
-       <p className="stat-label">Tổng danh mục</p>
-  </div>
-     </div>
+            <p className="stat-number">{stats.totalCategories}</p>
+            <p className="stat-label">Tổng danh mục</p>
+          </div>
+        </div>
 
         <div className="stat-card tables">
-    <div className="stat-icon">🪑</div>
+          <div className="stat-icon">🪑</div>
           <div className="stat-content">
-    <h3>Bàn trống</h3>
-   <p className="stat-number">{stats.availableTables}</p>
+            <h3>Bàn trống</h3>
+            <p className="stat-number">{stats.availableTables}</p>
             <p className="stat-label">Sẵn sàng phục vụ</p>
           </div>
         </div>
 
-      <div className="stat-card revenue">
-  <div className="stat-icon">💰</div>
-  <div className="stat-content">
-            <h3>Doanh thu hôm nay</h3>
-     <p className="stat-number">{stats.todayRevenue.toLocaleString('vi-VN')} đ</p>
-          <p className="stat-label">Đơn hàng hoàn thành</p>
-          </div>
- </div>
-
-   <div className="stat-card pending">
- <div className="stat-icon">⏳</div>
+        <div className="stat-card revenue">
+          <div className="stat-icon">💰</div>
           <div className="stat-content">
-      <h3>Đơn chờ xử lý</h3>
-            <p className="stat-number">{stats.pendingOrders}</p>
-      <p className="stat-label">Cần xử lý</p>
+            <h3>Doanh thu hôm nay</h3>
+            <p className="stat-number">{stats.todayRevenue.toLocaleString('vi-VN')} đ</p>
+            <p className="stat-label">Đơn hàng hoàn thành</p>
           </div>
-   </div>
-  </div>
+        </div>
+
+        <div className="stat-card pending">
+          <div className="stat-icon">⏳</div>
+          <div className="stat-content">
+            <h3>Đơn chờ xử lý</h3>
+            <p className="stat-number">{stats.pendingOrders}</p>
+            <p className="stat-label">Cần xử lý</p>
+          </div>
+        </div>
+      </div>
 
       <div className="quick-actions">
-      <h3>Thao tác nhanh</h3>
+        <h3>Thao tác nhanh</h3>
         <div className="action-buttons">
-       <button className="action-btn primary">
-            <span className="action-icon">➕</span>
-        <span>Tạo đơn hàng mới</span>
+          <button className="action-btn primary" onClick={() => navigate('/tables')}>
+            <span className="action-icon">🍽️</span>
+            <span>Đặt món (từ bàn)</span>
           </button>
-      <button className="action-btn secondary">
-          <span className="action-icon">📦</span>
-         <span>Thêm sản phẩm</span>
-  </button>
-          <button className="action-btn success">
-            <span className="action-icon">👥</span>
-  <span>Quản lý bàn</span>
-   </button>
-  <button className="action-btn info">
+          <button className="action-btn secondary" onClick={() => navigate('/products')}>
+            <span className="action-icon">📦</span>
+            <span>Quản lý sản phẩm</span>
+          </button>
+          <button className="action-btn success" onClick={() => navigate('/orders')}>
+            <span className="action-icon">📋</span>
+            <span>Xem đơn hàng</span>
+          </button>
+          <button className="action-btn info" onClick={() => alert('Tính năng báo cáo đang phát triển')}>
             <span className="action-icon">📊</span>
-     <span>Xem báo cáo</span>
+            <span>Xem báo cáo</span>
           </button>
         </div>
       </div>
 
       <div className="system-info">
         <div className="info-card">
-    <h4>🎯 Mục tiêu hôm nay</h4>
-        <p>Phục vụ tốt nhất cho khách hàng</p>
-  </div>
+          <h4>🎯 Mục tiêu hôm nay</h4>
+          <p>Phục vụ tốt nhất cho khách hàng</p>
+        </div>
         <div className="info-card">
           <h4>📈 Hiệu suất</h4>
-      <p>Hệ thống hoạt động ổn định</p>
-      </div>
-   <div className="info-card">
+          <p>Hệ thống hoạt động ổn định</p>
+        </div>
+        <div className="info-card">
           <h4>🔔 Thông báo</h4>
- <p>{stats.pendingOrders > 0 ? `${stats.pendingOrders} đơn hàng cần xử lý` : 'Không có thông báo mới'}</p>
+          <p>{stats.pendingOrders > 0 ? `${stats.pendingOrders} đơn hàng cần xử lý` : 'Không có thông báo mới'}</p>
         </div>
       </div>
- </div>
+    </div>
   );
 };
 

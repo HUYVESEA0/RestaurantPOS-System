@@ -11,14 +11,15 @@
 
 .header h2 {
   margin: 0;
-  color: #2c3e50;
+  color: var(--bun-brown);
 }
 
 .orders-table {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: var(--bun-card);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(139,94,52,0.12);
   overflow-x: auto;
+  border: 1px solid var(--bun-border);
 }
 
 table {
@@ -27,50 +28,50 @@ table {
 }
 
 thead {
-  background-color: #f8f9fa;
+  background-color: #fff3c2;
 }
 
 th {
   padding: 1rem;
   text-align: left;
 font-weight: 600;
-  color: #2c3e50;
-  border-bottom: 2px solid #dee2e6;
+  color: var(--bun-brown);
+  border-bottom: 2px solid var(--bun-border);
 }
 
 td {
   padding: 1rem;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--bun-border);
 }
 
 tbody tr:hover {
-  background-color: #f8f9fa;
+  background-color: #fff7d6;
 }
 
 .price {
-  color: #e74c3c;
+  color: var(--bun-green);
   font-weight: 600;
 }
 
 .status-select {
   padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  border: 1px solid #ddd;
+  border-radius: 6px;
+  border: 1px solid var(--bun-border);
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
 }
 
 .status-select.warning {
-  background-color: #fff3cd;
-  color: #856404;
-  border-color: #ffc107;
+  background-color: #fff3c2;
+  color: #7a5a27;
+  border-color: var(--bun-yellow);
 }
 
 .status-select.success {
-  background-color: #d4edda;
-  color: #155724;
-  border-color: #28a745;
+  background-color: #e9f7ef;
+  color: var(--bun-green);
+  border-color: var(--bun-green);
 }
 
 .status-select.danger {
@@ -87,19 +88,19 @@ tbody tr:hover {
 .btn {
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.3s;
 }
 
 .btn-primary {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--bun-green);
+  color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: #2980b9;
+  background-color: #256928;
 }
 
 .btn-sm {
@@ -108,12 +109,12 @@ tbody tr:hover {
 }
 
 .btn-info {
-  background-color: #17a2b8;
-  color: white;
+  background-color: var(--bun-yellow);
+  color: #3e3e3e;
 }
 
 .btn-info:hover {
-  background-color: #138496;
+  background-color: #eac23a;
 }
 
 .btn-delete {
@@ -130,7 +131,7 @@ tbody tr:hover {
 .empty-state {
   text-align: center;
   padding: 3rem;
-  color: #666;
+  color: var(--bun-muted);
   font-size: 1.1rem;
 }
 

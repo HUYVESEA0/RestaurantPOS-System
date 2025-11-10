@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestaurantPOS.API.Data;
@@ -7,6 +8,7 @@ namespace RestaurantPOS.API.Controllers
 {
   [Route("api/[controller]")]
     [ApiController]
+    [Authorize] // Require authentication
     public class CategoriesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

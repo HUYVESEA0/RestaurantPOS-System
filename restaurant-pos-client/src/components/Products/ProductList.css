@@ -11,7 +11,7 @@
 
 .header h2 {
   margin: 0;
-  color: #2c3e50;
+  color: var(--bun-brown);
 }
 
 .filters {
@@ -23,21 +23,21 @@
 
 .filter-btn {
   padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
-  background-color: white;
-  border-radius: 4px;
+  border: 1px solid var(--bun-border);
+  background-color: var(--bun-card);
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .filter-btn:hover {
-  background-color: #f0f0f0;
+  background-color: #fff3c2;
 }
 
 .filter-btn.active {
-  background-color: #3498db;
-  color: white;
-  border-color: #3498db;
+  background-color: var(--bun-green);
+  color: #ffffff;
+  border-color: var(--bun-green);
 }
 
 .product-grid {
@@ -47,9 +47,10 @@
 }
 
 .product-card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: var(--bun-card);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(139,94,52,0.12);
+  border: 1px solid var(--bun-border);
   overflow: hidden;
   transition: transform 0.3s;
 }
@@ -61,7 +62,7 @@
 
 .product-image {
   height: 200px;
-  background-color: #f5f5f5;
+  background-color: #fff3c2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,7 +75,7 @@
 }
 
 .no-image {
-  color: #999;
+  color: var(--bun-muted);
   font-size: 0.9rem;
 }
 
@@ -84,26 +85,26 @@
 
 .product-info h3 {
   margin: 0 0 0.5rem 0;
-  color: #2c3e50;
+  color: var(--bun-brown);
   font-size: 1.1rem;
 }
 
 .description {
-  color: #666;
+  color: var(--bun-muted);
   font-size: 0.9rem;
   margin: 0.5rem 0;
   line-height: 1.4;
 }
 
 .price {
-  color: #e74c3c;
+  color: var(--bun-green);
   font-size: 1.2rem;
   font-weight: bold;
   margin: 0.5rem 0;
 }
 
 .category {
-  color: #7f8c8d;
+  color: var(--bun-muted);
   font-size: 0.85rem;
   margin: 0.5rem 0;
 }
@@ -121,13 +122,13 @@
 }
 
 .badge.available {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #e9f7ef;
+  color: var(--bun-green);
 }
 
 .badge.unavailable {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #ffebee;
+  color: #b71c1c;
 }
 
 .product-actions {
@@ -139,7 +140,7 @@
 .btn {
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.3s;
@@ -147,21 +148,21 @@
 }
 
 .btn-primary {
-background-color: #3498db;
-  color: white;
+  background-color: var(--bun-green);
+  color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: #2980b9;
+  background-color: #256928;
 }
 
 .btn-edit {
-  background-color: #f39c12;
-  color: white;
+  background-color: var(--bun-yellow);
+  color: #3e3e3e;
 }
 
 .btn-edit:hover {
-  background-color: #e67e22;
+  background-color: #eac23a;
 }
 
 .btn-delete {
@@ -178,7 +179,7 @@ background-color: #3498db;
 .empty-state {
   text-align: center;
   padding: 3rem;
-  color: #666;
+  color: var(--bun-muted);
   font-size: 1.1rem;
 }
 

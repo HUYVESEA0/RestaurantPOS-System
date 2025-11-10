@@ -11,7 +11,7 @@
 
 .header h2 {
   margin: 0;
-  color: #2c3e50;
+  color: var(--bun-brown);
 }
 
 .category-grid {
@@ -21,9 +21,10 @@
 }
 
 .category-card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: var(--bun-card);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(139,94,52,0.12);
+  border: 1px solid var(--bun-border);
   padding: 1.5rem;
   transition: transform 0.3s;
 }
@@ -45,12 +46,12 @@
 
 .category-info h3 {
   margin: 0 0 0.5rem 0;
-  color: #2c3e50;
+  color: var(--bun-brown);
   font-size: 1.3rem;
 }
 
 .category-info p {
-  color: #666;
+  color: var(--bun-muted);
   margin: 0;
   line-height: 1.5;
 }
@@ -63,7 +64,7 @@
 .btn {
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.3s;
@@ -71,21 +72,21 @@
 }
 
 .btn-primary {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--bun-green);
+  color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: #2980b9;
+  background-color: #256928;
 }
 
 .btn-edit {
-  background-color: #f39c12;
-  color: white;
+  background-color: var(--bun-yellow);
+  color: #3e3e3e;
 }
 
 .btn-edit:hover {
-  background-color: #e67e22;
+  background-color: #eac23a;
 }
 
 .btn-delete {
@@ -102,7 +103,7 @@
 .empty-state {
   text-align: center;
   padding: 3rem;
-  color: #666;
+  color: var(--bun-muted);
   font-size: 1.1rem;
 }
 

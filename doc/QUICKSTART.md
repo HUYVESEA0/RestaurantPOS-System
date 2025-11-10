@@ -206,3 +206,64 @@ Hệ thống tự động tạo data mẫu:
 - Xem [AUTH_GUIDE.md](AUTH_GUIDE.md) để hiểu về authentication
 - Xem [PASSWORD_RESET_GUIDE.md](PASSWORD_RESET_GUIDE.md) để setup email
 - Xem [ENV_CONFIGURATION_GUIDE.md](ENV_CONFIGURATION_GUIDE.md) để config environment
+
+## 🐛 Quick Fixes
+
+### Script won't run
+```batch
+# Run as Administrator
+Right-click → "Run as administrator"
+```
+
+### EF Core tools not found
+```batch
+# Install EF Core tools globally
+dotnet tool install --global dotnet-ef
+
+# Or update if already installed
+dotnet tool update --global dotnet-ef
+
+# Verify installation
+dotnet ef --version
+```
+
+### TypeScript version conflict
+```batch
+# Use fix script
+fix-setup.bat
+
+# Or manually fix
+cd restaurant-pos-client
+rmdir /s /q node_modules
+del package-lock.json
+npm install --legacy-peer-deps
+```
+
+### Port already in use
+```batch
+netstat -ano | findstr :7000
+taskkill /PID <PID> /F
+```
+
+### Database error
+```batch
+dotnet ef database drop --project RestaurantPOS.API
+setup.bat
+```
+
+### npm error
+```batch
+cd restaurant-pos-client
+rmdir /s /q node_modules
+del package-lock.json
+npm cache clean --force
+npm install --legacy-peer-deps
+```
+
+### Complete reset
+```batch
+# Use the troubleshooting script
+fix-setup.bat
+
+# Then run setup again
+setup.bat

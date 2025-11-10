@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { authService } from '../../services/authService';
 import './ResetPassword.css';
@@ -16,11 +16,7 @@ const [confirmPassword, setConfirmPassword] = useState('');
   const [tokenValid, setTokenValid] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  useEffect(() => {
-    validateToken();
-  }, [token]);
-
-  const validateToken = async () => {
+  const validateToken = useCallback(async () => {
     if (!token) {
       setError('Token không hợp lệ');
       setValidating(false);
@@ -36,7 +32,11 @@ const [confirmPassword, setConfirmPassword] = useState('');
     } finally {
       setValidating(false);
     }
-  };
+  }, [token]);
+
+  useEffect(() => {
+    validateToken();
+  }, [validateToken]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

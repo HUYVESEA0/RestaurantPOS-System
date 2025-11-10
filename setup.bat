@@ -31,13 +31,26 @@ echo [OK] Node.js found: %NODE_VERSION%
 
 echo.
 echo =====================================
-echo Step 1: Restore Backend Packages
+echo Step 1: Install EF Core Tools
+echo =====================================
+echo Checking if EF Core tools are installed...
+dotnet tool install --global dotnet-ef >nul 2>&1
+if %errorlevel% equ 0 (
+    echo [OK] EF Core tools installed successfully
+) else (
+    echo [INFO] EF Core tools already installed or updating...
+    dotnet tool update --global dotnet-ef
+)
+
+echo.
+echo =====================================
+echo Step 2: Restore Backend Packages
 echo =====================================
 dotnet restore RestaurantPOS.sln
 
 echo.
 echo =====================================
-echo Step 2: Setup Database
+echo Step 3: Setup Database
 echo =====================================
 
 REM Check if migrations exist
@@ -53,10 +66,11 @@ if exist "RestaurantPOS.API\Migrations" (
 
 echo.
 echo =====================================
-echo Step 3: Install Frontend Dependencies
+echo Step 4: Install Frontend Dependencies
 echo =====================================
 cd restaurant-pos-client
-call npm install
+echo Installing with legacy peer deps to resolve TypeScript conflict...
+call npm install --legacy-peer-deps
 cd ..
 
 echo.
@@ -73,7 +87,7 @@ echo    cd restaurant-pos-client
 echo    npm start
 echo.
 echo Or use the run scripts:
-echo run-backend.bat
+echo    run-backend.bat
 echo    run-frontend.bat
 echo    run-all.bat
 echo.

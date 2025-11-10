@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace RestaurantPOS.API.Models
 {
@@ -13,6 +14,7 @@ namespace RestaurantPOS.API.Models
         [StringLength(200)]
         public string? Description { get; set; }
 
+        [JsonIgnore] // Prevent circular reference
         public ICollection<Product>? Products { get; set; }
     }
 }

@@ -11,136 +11,264 @@
 
 .header h2 {
   margin: 0;
-  color: #2c3e50;
+  color: var(--bun-brown);
 }
 
 .filters {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 1rem;
   margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--bun-card);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(139,94,52,0.12);
+  border: 1px solid var(--bun-border);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   flex-wrap: wrap;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: var(--bun-brown);
+  min-width: 80px;
 }
 
 .filter-btn {
   padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
-  background-color: white;
-  border-radius: 4px;
+  border: 1px solid var(--bun-border);
+  background-color: var(--bun-card);
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s;
+  font-size: 0.9rem;
 }
 
 .filter-btn:hover {
-  background-color: #f0f0f0;
+  background-color: #fff3c2;
 }
 
 .filter-btn.active {
-  background-color: #3498db;
-  color: white;
-  border-color: #3498db;
+  background-color: var(--bun-green);
+  color: #ffffff;
+  border-color: var(--bun-green);
+}
+
+/* ✅ Floor Section Styling */
+.floor-section {
+  margin-bottom: 2rem;
+}
+
+.floor-title {
+  color: var(--bun-brown);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--bun-yellow);
 }
 
 .table-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .table-card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(139,94,52,0.12);
+  padding: 1rem;
   transition: all 0.3s;
-  border-left: 4px solid transparent;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
 }
 
+/* ✅ Bàn Trống - Nền Xanh Lá Sáng */
 .table-card.available {
-border-left-color: #27ae60;
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 50%, #b8dac6 100%);
+  border: 2px solid #28a745;
+  border-left: 6px solid #28a745;
 }
 
+.table-card.available::before {
+  content: '✓';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 60px;
+  height: 60px;
+  background: #28a745;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 0.15;
+  transform: rotate(15deg);
+}
+
+/* ✅ Bàn Đang Dùng - Nền Đỏ/Cam Sáng */
 .table-card.occupied {
-  border-left-color: #e74c3c;
+  background: linear-gradient(135deg, #ffe6e6 0%, #ffd4d4 50%, #ffc7c7 100%);
+  border: 2px solid #dc3545;
+  border-left: 6px solid #dc3545;
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+.table-card.occupied::before {
+  content: '🍽️';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 60px;
+  height: 60px;
+  background: #dc3545;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 0.15;
+}
+
+@keyframes subtlePulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+  }
+  50% {
+  box-shadow: 0 4px 16px rgba(220, 53, 69, 0.5);
+  }
 }
 
 .table-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ✅ Hover effects với màu đậm hơn */
+.table-card.available:hover {
+  background: linear-gradient(135deg, #b8dac6 0%, #9ed3a5 50%, #85c98f 100%);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+  border-color: #1e7e34;
+}
+
+.table-card.occupied:hover {
+  background: linear-gradient(135deg, #ffc7c7 0%, #ffb3b3 50%, #ff9999 100%);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+  border-color: #c82333;
 }
 
 .table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(0,0,0,0.1);
 }
 
 .table-number {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* ✅ Số bàn trống - màu xanh */
+.table-card.available .table-number {
+  color: #155724;
+}
+
+/* ✅ Số bàn đang dùng - màu đỏ */
+.table-card.occupied .table-number {
+  color: #721c24;
 }
 
 .status-badge {
   padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
+/* ✅ Badge Bàn Trống - Xanh đậm */
 .status-badge.available {
-  background-color: #d4edda;
-  color: #155724;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: 2px solid #1e7e34;
 }
 
+/* ✅ Badge Bàn Đang Dùng - Đỏ đậm */
 .status-badge.occupied {
-background-color: #f8d7da;
-  color: #721c24;
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  color: white;
+  border: 2px solid #bd2130;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
 }
 
 .table-info {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .info-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #666;
-  font-size: 0.95rem;
+  color: var(--bun-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
 }
 
 .icon {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .table-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.5rem;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
 }
 
 .btn {
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   transition: all 0.3s;
   font-weight: 500;
+  text-align: center;
 }
 
 .btn-primary {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--bun-green);
+  color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: #2980b9;
+  background-color: #256928;
 }
 
 .btn-toggle {
-  grid-column: span 3;
   font-weight: 600;
 }
 
@@ -185,10 +313,35 @@ background-color: #f8d7da;
 .empty-state {
   text-align: center;
   padding: 3rem;
-  color: #666;
+  color: var(--bun-muted);
   font-size: 1.1rem;
 }
 
 .error {
   color: #e74c3c;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+  .filters {
+    padding: 0.75rem;
+  }
+
+  .filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-group label {
+    min-width: auto;
+  }
+
+  .table-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+ gap: 0.75rem;
+  }
+
+  .table-number {
+    font-size: 1.2rem;
+  }
 }

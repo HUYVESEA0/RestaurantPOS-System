@@ -42,12 +42,37 @@ namespace RestaurantPOS.API.Data
          new Category { Id = 3, Name = "Tráng miệng", Description = "Các món tráng miệng" }
             );
 
-            modelBuilder.Entity<Table>().HasData(
- new Table { Id = 1, TableNumber = "B01", Capacity = 4, IsAvailable = true },
-              new Table { Id = 2, TableNumber = "B02", Capacity = 4, IsAvailable = true },
-       new Table { Id = 3, TableNumber = "B03", Capacity = 6, IsAvailable = true },
-   new Table { Id = 4, TableNumber = "B04", Capacity = 2, IsAvailable = true }
-            );
+        // Seed 50 tables across 2 floors (like KiotViet)
+        var tables = new List<Table>();
+        int tableId = 1;
+
+        // Tầng 1: 30 bàn (B01-B30)
+        for (int i = 1; i <= 30; i++)
+    {
+            tables.Add(new Table
+            {
+           Id = tableId++,
+       TableNumber = $"B{i:D2}",
+           Capacity = i <= 20 ? 4 : (i <= 25 ? 6 : 2), // Mix of capacities
+       IsAvailable = true,
+             Floor = "Tầng 1"
+    });
+        }
+
+        // Tầng 2: 20 bàn (B31-B50)
+        for (int i = 31; i <= 50; i++)
+        {
+            tables.Add(new Table
+     {
+         Id = tableId++,
+    TableNumber = $"B{i:D2}",
+     Capacity = i <= 45 ? 4 : 6,
+ IsAvailable = true,
+   Floor = "Tầng 2"
+            });
+      }
+
+    modelBuilder.Entity<Table>().HasData(tables);
 
     // Configure User entity
           modelBuilder.Entity<User>()

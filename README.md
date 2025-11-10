@@ -82,6 +82,14 @@ RestaurantPOS-System/
 
 ## 📦 Cài đặt
 
+### Prerequisites
+
+Đảm bảo bạn đã cài đặt:
+- ✅ .NET 8.0 SDK hoặc mới hơn
+- ✅ Node.js 18+ và npm
+- ✅ SQL Server hoặc SQL Server LocalDB
+- ✅ EF Core tools (sẽ tự động cài trong setup)
+
 ### 1. Clone repository
 
 ```bash
@@ -89,7 +97,48 @@ git clone https://github.com/HUYVESEA0/RestaurantPOS-System.git
 cd RestaurantPOS-System
 ```
 
-### 2. Cài đặt Backend
+### 2. Quick Setup (Recommended)
+
+```batch
+REM Chạy script setup tự động
+setup.bat
+```
+
+Script sẽ tự động:
+- ✅ Check .NET SDK và Node.js
+- ✅ Install EF Core tools
+- ✅ Restore backend packages
+- ✅ Setup database với migrations
+- ✅ Install frontend dependencies
+
+### 3. Nếu gặp lỗi
+
+```batch
+REM Chạy troubleshooting script
+fix-setup.bat
+
+REM Database issues
+fix-database.bat
+
+REM Frontend issues
+fix-frontend.bat
+
+REM Complete reset
+fix-setup.bat
+setup.bat
+```
+
+### 4. Verify Database
+
+```cmd
+REM Check SQL Server
+check-sqlserver.bat
+
+REM Verify database exists
+sqlcmd -S HUYVIESEA\SQLEXPRESS -Q "SELECT name FROM sys.databases WHERE name='RestaurantPOS'"
+```
+
+### 4. Manual Setup (Alternative)
 
 ```bash
 # Restore packages
@@ -267,22 +316,15 @@ REM Hoặc chạy riêng lẻ
 run-backend.bat
 run-frontend.bat
 
+REM Troubleshooting
+fix-setup.bat      # Fix tất cả issues
+fix-frontend.bat   # Fix chỉ frontend issues
+
 REM Dừng tất cả servers
 stop-all.bat
 ```
 
-### Windows PowerShell (Alternative)
-```powershell
-# Setup toàn bộ dự án
-.\setup.ps1
 
-# Chạy cả Backend và Frontend
-.\run-all.ps1
-
-# Hoặc chạy riêng lẻ
-.\run-backend.ps1
-.\run-frontend.ps1
-```
 
 ## 📝 License
 
@@ -319,7 +361,9 @@ Give a ⭐️ if this project helped you!
 
 - [README.md](README.md) - This file
 - [QUICKSTART.md](QUICKSTART.md) - Quick setup guide
-- [BATCH_SCRIPTS_GUIDE.md](BATCH_SCRIPTS_GUIDE.md) - Batch scripts documentation 🆕
+- [INSTALLATION_TROUBLESHOOTING.md](INSTALLATION_TROUBLESHOOTING.md) - Installation issues & fixes 🆕
+- [BATCH_SCRIPTS_GUIDE.md](BATCH_SCRIPTS_GUIDE.md) - Batch scripts documentation
+- [QUICK_REFERENCE.md](QUICK_REFERENCE.md) - Quick command reference 🆕
 - [ENV_CONFIGURATION_GUIDE.md](ENV_CONFIGURATION_GUIDE.md) - Environment variables setup
 - [TECHNICAL.md](TECHNICAL.md) - Technical details
 - [AUTH_GUIDE.md](AUTH_GUIDE.md) - Authentication documentation
