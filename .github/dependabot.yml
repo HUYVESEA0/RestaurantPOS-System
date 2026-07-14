@@ -1,0 +1,48 @@
+version: 2
+updates:
+  # Frontend – npm/yarn (restaurant-pos-client)
+  - package-ecosystem: "npm"
+    directory: "/restaurant-pos-client"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Ho_Chi_Minh"
+    open-pull-requests-limit: 5
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "react-router*"
+          - "@remix-run/*"
+      vite-tooling:
+        patterns:
+          - "vite"
+          - "@vitejs/*"
+          - "typescript"
+      linting:
+        patterns:
+          - "eslint*"
+          - "minimatch"
+    ignore:
+      # Only apply security updates for axios; avoid creating duplicate PRs for patch bumps
+      - dependency-name: "axios"
+        update-types: ["version-update:semver-patch"]
+
+  # Backend – NuGet (.NET)
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Ho_Chi_Minh"
+    open-pull-requests-limit: 5
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
